@@ -2,10 +2,10 @@ import app from './server'
 import {MongoClient} from 'mongodb'
 import config from './config/config'
 
-async function main(){
-    console.log(config.MONGO_URI);
-    
-    const client = new MongoClient(config.MONGO_URI);
+let client : MongoClient;
+
+async function main(){    
+    client = new MongoClient(config.MONGO_URI);
     const port = config.PORT;
 
     try{
@@ -22,4 +22,7 @@ async function main(){
 }
 
 main()
-    .catch(console.error);
+    .catch(console.error)
+    .finally(()=>{
+        client.close();
+    })
