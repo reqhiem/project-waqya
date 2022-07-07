@@ -1,29 +1,25 @@
 import app from './server'
-//import {MongoClient} from 'mongodb'
-
 import mongoose, { ConnectOptions } from 'mongoose'
 import config from './config/config'
+import dotenv from 'dotenv'
 
-//let client : MongoClient;
-
-async function main(){    
-  //client = new MongoClient(config.MONGO_URI);
+async function main(){ 
+  dotenv.config()
   const port = config.PORT;
 
   try{
-    //await client.connect();
     const mongooseOptions : ConnectOptions = {
       connectTimeoutMS: 2000,
     }
 
     await mongoose.connect(`mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`, mongooseOptions)
+    console.log(`connected to ${config.MONGO_DATABASE}`)
 
     app.listen(port, ()=>{
-        console.log(`Server is running on port ${port}`);
-        console.log(`Go to http://localhost:${port}/`);
+        console.log(`[Running] in http://localhost:${port}/`);
     })
-  }catch(e){
-    console.error(e);
+  }catch(err){
+    console.error(err);
     process.exit(1);        
   }
 }

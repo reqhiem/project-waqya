@@ -1,6 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
 export default {
   MONGO_HOST: process.env.MONGO_HOST || 'localhost',
   MONGO_PORT: process.env.MONGO_PORT || '27017',
