@@ -10,11 +10,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 app.use('/api/v1/', (req, res)=>{
-    res.json({hola: 'Hola'})
+  res.json({hola: 'Hola'})
 })
 
 app.use('*', (req, res) => {
-    res.status(400).json({error: `not found`})
+  res.status(400).json({error: `not found`})
 })
 
 export default app;
