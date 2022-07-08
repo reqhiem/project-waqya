@@ -3,13 +3,15 @@ import mongoose, { ConnectOptions } from 'mongoose'
 import config from './config/config'
 import dotenv from 'dotenv'
 
+let conn: Promise<typeof mongoose>;
+
 async function main(){ 
   dotenv.config()
   const port = config.PORT;
 
   try{
     const mongooseOptions : ConnectOptions = {
-      connectTimeoutMS: 2000,
+      //connectTimeoutMS: 2000,
     }
 
     await mongoose.connect(`mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`, mongooseOptions)
@@ -27,5 +29,5 @@ async function main(){
 main()
   .catch(console.error)
   .finally(()=>{
-      mongoose.connection.close()
+      //conn.disconnect()
   })
