@@ -1,35 +1,35 @@
 import app from './server'
-//import {MongoClient} from 'mongodb'
-
 import mongoose, { ConnectOptions } from 'mongoose'
 import config from './config/config'
 
-//let client : MongoClient;
+async function main() {
+  const port = config.PORT
+  const stringConnection =
+    config.MONGO_URI === 'undefined'
+      ? `mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`
+      : config.MONGO_URI
 
-async function main(){    
-  //client = new MongoClient(config.MONGO_URI);
-  const port = config.PORT;
-
-  try{
-    //await client.connect();
-    const mongooseOptions : ConnectOptions = {
-      connectTimeoutMS: 2000,
+  try {
+    const mongooseOptions: ConnectOptions = {
+      // connectTimeoutMS: 2000,
     }
 
-    await mongoose.connect(`mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`, mongooseOptions)
+    await mongoose.connect(stringConnection, mongooseOptions)
+    console.log(
+      `connected to ${config.MONGO_DATABASE} whit ${stringConnection}`
+    )
 
-    app.listen(port, ()=>{
-        console.log(`Server is running on port ${port}`);
-        console.log(`Go to http://localhost:${port}/`);
+    app.listen(port, () => {
+      console.log(`[Running] in http://localhost:${port}/`)
     })
-  }catch(e){
-    console.error(e);
-    process.exit(1);        
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
   }
 }
 
 main()
   .catch(console.error)
-  .finally(()=>{
-      mongoose.connection.close()
+  .finally(() => {
+    // conn.disconnect()
   })
