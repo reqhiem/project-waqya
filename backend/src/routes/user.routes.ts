@@ -1,9 +1,9 @@
-import express from 'express'
-import UserController from '../api/user.controller'
+import express from 'express';
+import UserController from '../api/user.controller';
 
-const router = express.Router()
+const router = express.Router();
 
-//http://domain.com/api/v1/users/
+// http://domain.com/api/v1/users/
 
 router.get('/', UserController.getUsers);
 router.get('/:id', UserController.getUser);
