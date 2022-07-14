@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+.Dashboard {
+  font-family: 'DM Sans', sans-serif;
+  
+}
+
+.Logo-container {
+  font-size: 25px;
+  
+}
+
+.Logo-container > h1{
+  font-style: normal;
+  font-weight: 800;
+}
+
+.Navbar-item {
+  background-color: white;
+  padding: 16px 10px;
+  border-radius: 15px;
+  padding-left: 20px;
+}
+
+.Navbar-item-caption {
+  margin-left: 20px; 
+}

@@ -1,4 +1,5 @@
 export default {
+  MONGO_URI: process.env.MONGO_URI || 'undefined',
   MONGO_HOST: process.env.MONGO_HOST || 'localhost',
   MONGO_PORT: process.env.MONGO_PORT || '27017',
   MONGO_DATABASE: process.env.MONGO_DATABASE || 'waqya_db',

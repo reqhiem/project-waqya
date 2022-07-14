@@ -14,7 +14,7 @@ function App() {
     <Box className="App" bg='#f5f5f5'>
       <Header/>
       <div>
-        asdadsasd
+        Hola mundo
       </div>
     </Box>
   )

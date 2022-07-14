@@ -8,13 +8,14 @@ let conn: Promise<typeof mongoose>;
 async function main(){ 
   dotenv.config()
   const port = config.PORT;
+  const uri_connect = (config.MONGO_URI === 'undefined') ? `mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}` : config.MONGO_URI
 
   try{
     const mongooseOptions : ConnectOptions = {
       //connectTimeoutMS: 2000,
     }
 
-    await mongoose.connect(`mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`, mongooseOptions)
+    await mongoose.connect(uri_connect, mongooseOptions)
     console.log(`connected to ${config.MONGO_DATABASE}`)
 
     app.listen(port, ()=>{
