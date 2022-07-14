@@ -1,7 +1,5 @@
 import { RequestHandler } from 'express'
-import { toUnicode } from 'punycode'
 import User from '../models/User'
-
 
 class UserController {
   static getUsers: RequestHandler = async (req, res) => {
@@ -24,19 +22,19 @@ class UserController {
 
   static createUser: RequestHandler = async (req, res) => {
     try {
-      //verify repeated elements
+      // verify repeated elements
       const userFound = await User.findOne({
         username: req.query.username,
-        email: req.query.email  
+        email: req.query.email,
       })
 
       if (userFound) {
         return res.status(409).json({
-          error: `The User ${req.query.username} already exists`
+          error: `The User ${req.query.username} already exists`,
         })
       }
 
-      let {username, email, name, lastName, password, typeUser} = req.query
+      let { username, email, name, lastName, password, typeUser } = req.query
 
       const user = new User({
         username,
@@ -44,15 +42,15 @@ class UserController {
         name,
         lastName,
         password,
-        typeUser
+        typeUser,
       })
 
       const savedUser = await user.save()
       res.json(savedUser)
     } catch (error) {
-      res.json({error})
+      res.json({ error })
     }
-  } 
+  }
 }
 
 export default UserController

@@ -31,7 +31,7 @@ const UserSchema = new Schema({
     required: true,
   },
   typeUser: {
-    type: Number, //0: User, 1: Admin
+    type: Number, // 0: User, 1: Admin
     default: 0
   }
 
