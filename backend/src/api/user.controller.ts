@@ -7,7 +7,7 @@ class UserController {
       const users = await User.find();
       return res.json(users);
     } catch (error) {
-      res.json(error);
+      return res.json(error);
     }
   };
 
@@ -16,7 +16,7 @@ class UserController {
       const userFound = await User.findById(req.params.id);
       return res.json(userFound);
     } catch (error) {
-      return res.status(204).json();
+      return res.json(error);
     }
   };
 
@@ -51,6 +51,28 @@ class UserController {
       res.json({ error });
     }
   };
+
+  static deleteUser: RequestHandler = async (req, res) => {
+    try {
+      const userDeleted = await User.findByIdAndDelete(req.params.id);
+      return res.json(userDeleted);
+      
+    } catch (error) {
+      return res.json(error);
+    }
+  }
+
+  static updateUser: RequestHandler = async (req, res) => {
+    try {
+      const userUpdated = await User.findByIdAndUpdate(req.params.id, req.query, {
+        new: true,
+      });
+      return res.json(userUpdated);
+    } catch (error) {
+      return res.json(error);
+    }
+  }
+
 }
 
 export default UserController;
