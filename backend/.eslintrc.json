@@ -18,6 +18,7 @@
     "require-jsdoc": "off",
     "semi": "off",
     "indent": "off",
-    "prefer-const": "warn"
+    "prefer-const": "off",
+    "new-cap": "off"
   }
 }
